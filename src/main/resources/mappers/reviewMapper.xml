@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+ "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+ 
+ <mapper namespace="com.example.lesson03.dao.ReviewDAO">
+ 	<select id="selectReview" parameterType="int" resultType="com.example.lesson03.model.Review">
+ 		SELECT
+ 			`id`
+			,`storeId`
+			,`menu`
+			,`userName`
+			,`point`
+			,`review`
+			,`createdAt`
+			,`updatedAt`
+		FROM
+			`new_review`
+		WHERE
+			`id` = #{id}
+ 	</select>
+ 	
+ 	<!-- <seclet> 이런식으로 select 내부에 id값만 바꿔주면 xml 파일을 한개로 유지하면서 사용할 수 있다.
+ 	 </seclet>-->
+ </mapper>
