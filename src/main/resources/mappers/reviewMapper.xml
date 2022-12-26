@@ -20,5 +20,52 @@
  	</select>
  	
  	<!-- <seclet> 이런식으로 select 내부에 id값만 바꿔주면 xml 파일을 한개로 유지하면서 사용할 수 있다.
+ 	 	insert에서는 resultType이 없다.
  	 </seclet>-->
+ 	 
+ 	 <insert id="insertReview" parameterType="com.example.lesson03.model.Review">
+ 	 	INSERT INTO `new_review`
+ 	 	(
+			 `storeId`
+			,`menu`
+			,`userName`
+			,`point`
+			,`review`
+			,`createdAt`
+			,`updatedAt`
+ 	 	)
+ 	 	VALUES
+ 	 	(
+ 	 		#{storeId}
+ 	 		, #{menu}
+ 	 		, #{userName}
+ 	 		, #{point}
+ 	 		, #{review}
+ 	 		, NOW()
+ 	 		, NOW()
+ 	 	)
+ 	 </insert>
+ 	 
+ 	 <insert id="insertReviewAsField" parameterType="map">
+ 	 	INSERT INTO `new_review`
+ 	 	(
+			 `storeId`
+			,`menu`
+			,`userName`
+			,`point`
+			,`review`
+			,`createdAt`
+			,`updatedAt`
+ 	 	)
+ 	 	VALUES
+ 	 	(
+ 	 		#{storeId}
+ 	 		, #{menu}
+ 	 		, #{userName}
+ 	 		, #{point}
+ 	 		, #{review}
+ 	 		, NOW()
+ 	 		, NOW()
+ 	 	)
+ 	 </insert>
  </mapper>
