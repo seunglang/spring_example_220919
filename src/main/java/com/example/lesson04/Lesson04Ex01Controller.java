@@ -2,6 +2,7 @@ package com.example.lesson04;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -9,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.example.lesson04.bo.UserBO;
+import com.example.lesson04.model.User;
 
 @RequestMapping("/lesson04/ex01")
 @Controller
@@ -44,8 +46,15 @@ public class Lesson04Ex01Controller {
 	
 	// http://localhost:8080/lesson04/ex01/get_last_user_view      view가 붙어있으면 jsp로 간다고 생각하자
 	@GetMapping("/get_last_user_view")
-	public String getLastUserView() {
+	public String getLastUserView(Model model) {
 		// db select
+		// 여러명 가져올땐 List<User> 한명은 User
+		// 가장 마지막에 추가된 사람 한명 가져오기
+		User user = userBO.getLastUser();
+		
+		// model에 데이터를 담아놓으면 jsp에서 꺼내서 쓸 수 있다.
+		model.addAttribute("seller", user);
+		model.addAttribute("title", "회원정보");
 		
 		
 		return "/lesson04/getLastUser"; // 결과 jsp
