@@ -6,5 +6,7 @@ import com.example.lesson04.model.Student;
 
 @Repository
 public interface StudentDAO {
-	public Student insertStudent(Student student);
+	public void insertStudent(Student student);
+	
+	public Student selectStudentById(int id);
 }

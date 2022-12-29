@@ -12,7 +12,11 @@ public class StudentBO {
 	@Autowired
 	private StudentDAO studentDAO;
 	
-	public Student getStudent(Student student) {
-		return studentDAO.insertStudent(student);
+	public void addStudent(Student student) {
+		studentDAO.insertStudent(student);
+	}
+	
+	public Student getStudentById(int id) {
+		return studentDAO.selectStudentById(id);
 	}
 }
