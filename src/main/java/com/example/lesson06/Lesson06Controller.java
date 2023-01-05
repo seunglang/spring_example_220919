@@ -1,5 +1,8 @@
 package com.example.lesson06;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -58,5 +61,23 @@ public class Lesson06Controller {
 	@GetMapping("/ex01/after_add_user_view")
 	public String afterAddUserView() {
 		return "lesson06/ex01/afterAddUser";
+	}
+	
+	// 이름을 추가하는 화면
+	// http://localhost:8080/lesson06/ex02/add_name_view
+	@GetMapping("/ex02/add_name_view")
+	public String addNameView() {
+		return "lesson06/ex02/addNameView";
+	}
+	
+	// 이름 중복확인 - AJAX 통신 요청
+	@ResponseBody // <= 리스폰스 바디가 빠져있으면 public String 타입에서 view 페이지의 주소가 왜 없는지 파악을 못해서 오류 발생
+	@GetMapping("/ex02/is_duplication")
+	public Map<String , Boolean> isDuplication(
+			@RequestParam("name") String name
+			) {
+		Map<String, Boolean> result = new HashMap<>();
+		result.put("is_duplication", userBO.existUserByName(name));
+		return result;
 	}
 }
